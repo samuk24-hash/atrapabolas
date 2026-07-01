@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://object"]
+
+[ext_resource type="Script" path="res://scripts/object.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cvx0c1darfyio" path="res://assets/star.svg" id="2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 14.0
+
+[node name="Object" type="Area2D"]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
