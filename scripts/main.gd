@@ -5,17 +5,26 @@ const FallingObject = preload("res://scenes/object.tscn")
 var score = 0
 var lives = 3
 
+var stars_spawned = 0 
+var speed_multiplier = 1.0
+
 func _ready():
 	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	$SpawnTimer.start()
 
 func _on_spawn_timer_timeout():
+	stars_spawned += 1
+	if stars_spawned % 20 ==0:
+		speed_multiplier *= 1.05
+		
 	var obj = FallingObject.instantiate()
 	obj.position.x = randf_range(50, get_viewport_rect().size.x - 50)
 	obj.position.y = -30
 	obj.area_entered.connect(_on_object_caught.bind(obj))
 	obj.tree_exiting.connect(_on_object_missed.bind(obj))
 	add_child(obj)
+	
+	
 
 func _on_object_caught(area, obj):
 	if area == $Player:
