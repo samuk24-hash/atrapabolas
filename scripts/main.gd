@@ -4,6 +4,7 @@ const FallingObject = preload("res://scenes/object.tscn")
 
 var score = 0
 var lives = 3
+var level = 1
 
 var stars_spawned = 0 
 var speed_multiplier = 1.0
@@ -11,6 +12,7 @@ var speed_multiplier = 1.0
 func _ready():
 	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	$SpawnTimer.start()
+	$HUD/LabelLevel.text = "Level: %d" % level
 
 func _on_spawn_timer_timeout():
 	stars_spawned += 1
